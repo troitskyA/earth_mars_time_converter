@@ -1,0 +1,33 @@
+version: '2'
+services:
+    nginx:
+        container_name: emc_nginx
+        build: ./docker/nginx
+        restart: always
+        volumes:
+            - ./www:/www
+            - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/site.conf
+            - ./docker/nginx/log:/var/log/nginx
+        ports:
+            - "80:80"
+        links:
+            - php
+            - php-bundle
+
+    php:
+        container_name: emc_php
+        build: ./docker/php
+        restart: always
+        volumes:
+            - ./www:/www
+            - ./docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+            - ./docker/php/php-fpm.conf:/usr/local/etc/php-fpm.d/php-fpm.conf
+            - ./docker/php/log:/var/log/php
+
+    php-bundle:
+        container_name: emc_php_bundle
+        command: top -b
+        build: ./docker/php-bundle
+        working_dir: /www
+        volumes:
+            - ./www:/www
