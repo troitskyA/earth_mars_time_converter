@@ -26,7 +26,7 @@ class ClockService
      * @return CalculationResult
      * @throws WrongDateTimeFormatException
      */
-    public function execute(string $dateTime): CalculationResult
+    public function calculate(string $dateTime): CalculationResult
     {
         if (!$this->isValid($dateTime)) {
             throw new WrongDateTimeFormatException();
