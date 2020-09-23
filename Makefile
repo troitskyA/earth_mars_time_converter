@@ -13,8 +13,9 @@ composer-install: # install composer
 build: # project bootstrap
 	docker-compose build
 	docker-compose up -d
-	cp .env.example .env
+	cp www/.env.example www/.env
 	docker-compose exec php-bundle composer install
+	docker-compose exec php-bundle php artisan key:generate
 
 tests:
 	docker-compose exec php-bundle phpunit
