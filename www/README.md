@@ -18,7 +18,7 @@ Then you can send requests to `http://127.0.0.1?dateTime={dateTime}` or send req
 Date format - `Y-m-d H:i:s` (I assumed, that "the time on Earth in UTC" means date and time, as we might need to calculate any other Earth day but current.
 
 ## Comments
-I decided to not overcomplicate this code structure. There are no Architecture patterns, as task is pretty simple and has only one clearly defined single function with no variations (YAGNI, KISS principles). Although, as API, we can dictate format of incoming variable.  
+I decided to not overcomplicate this code structure. There are no Architecture patterns, as task is pretty simple and has only one clearly defined function with no variations (YAGNI, KISS principles). Although, as API, we can dictate format of incoming variable.  
 So there is only one `APIController`. It accepts dateTime variable and send it to `App\Domain\ClockService`. 
 `App\Domain\ClockService` can be used to create command, job, or anything else. 
 We expect that this service returns `App\Domain\CalculationResult` object or throw an Exception.
